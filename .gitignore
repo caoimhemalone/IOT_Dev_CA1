@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 *.iml
 .gradle
 /local.properties
@@ -7,5 +8,8 @@
 /build
 /captures
 .externalNativeBuild
+=======
+
+>>>>>>> master
 Dweet Java and Android/android-dweetio/
 Dweet Java and Android/java-dweetio/
