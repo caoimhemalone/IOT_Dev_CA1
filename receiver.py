@@ -1,4 +1,6 @@
 import dweepy
 
-for dweet in dweepy.listen_for_dweets_from('raspberryPI'):
+thingName="CaoimhesThing";
+
+for dweet in dweepy.listen_for_dweets_from('CaoimhesThing'):
 	print dweet

@@ -5,4 +5,6 @@ def publish():
     dict["publish"] = "true"
     dweepy.dweet_for('caoimhe', dict)
 
+    String thingName = "CaoimhesThing";
+
 publish()

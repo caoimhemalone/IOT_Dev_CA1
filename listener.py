@@ -1,142 +1,194 @@
-import dweepy, math, time, platform, random
-from grovpi import *
+import dweepy, time, random, math, picamera
+from grovepi import *
+from time import sleep, gmtime, strftime
 from threading import Thread
 
 
-#Add in port numbers
-led1 = 
-led2 = 
-led3 = 
-camera = #buzzer is set off when photo is taken along with the green LED
-dht_sensor_port = 
-buzzer = 
-button = #button takes photo
+output = strftime("/home/pi/Desktop/IOT_Dev_CA1/Pi_Photos/img-%d-%m %H:%M:%S.png", gmtime())
+
+sleep_time = 1
+
+led1sensor = 7
+led2sensor = 8
+led3sensor = 5
+#camera = #buzzer is set off when photo is taken along with the green LED
+camera = picamera.PiCamera()
+#dht_sensor_port = 0
+buzzer = 3
+#button = 2 #button takes photo
 
 publisher_state = False;
-thing_from_pi = "CaoimhesThing"
+led1_state = False;
+led2_state = False;
+led3_state = False;
+cam_state = False;
+every_state = False;
+#thingName = "CaoimhesThing"
+thingName = "caoimhe"
 
-def listener(publisher):
-	for dweet in dweepy.listen_for_dweets_from('caoimhe'):
-		content = dweet["content"]
-		should_publish = content["publish"]
-		print should_publish
-		if should_publish == "true"
-		# start the publisher thread
-		global publisher_state
-		publisher_state = True 
-		if not publisher.is_alive():
-			publisher = Thread(target=publisher_method_caoimhe)
-		publisher.start()
-	else:
-		publisher_state = False
-		print "Wasn't true"
+
+def listener(publisher, led1, led2, led3, cam):
+        for dweet in dweepy.listen_for_dweets_from('caoimhe'):
+                content = dweet["content"]
+                should_publish = content.get("publish", "")
+                print should_publish
+                global publisher_state, led1_state, led2_state, led3_state, cam_state, every_state
+                if should_publish == "true":
+                        # start the publisher thread
+                            publisher_state = True
+                            if not publisher.is_alive():
+                                publisher = Thread(target=publisher_method_caoimhe)
+                                publisher.start()
+                elif should_publish == "led1":
+                        # start the publisher thread
+                        led1_state = True
+                        if not led1.is_alive():
+                                led1 = Thread(target=publisher_method_caoimhe)
+                        publisher.start()
+                elif should_publish == "led2":
+                        # start the publisher thread
+                        led2_state = True
+                        if not led2.is_alive():
+                                led2 = Thread(target=publisher_method_caoimhe)
+                        publisher.start()
+                elif should_publish == "led3":
+                        # start the publisher thread
+                        led3_state = True
+                        if not led3.is_alive():
+                                led3 = Thread(target=publisher_method_caoimhe)
+                        publisher.start()
+                elif should_publish == "cam":
+                        # start the publisher thread
+                        cam_state = True
+                        if not cam.is_alive():
+                                cam = Thread(target=publisher_method_caoimhe)
+                        publisher.start()
+
+                else:
+                        publisher_state = False
+                        print "Wasn't true"
 
 def publisher_method_caoimhe():
-	while publisher_state:
-		#Code goes here
-
-		def getTemp():
-			try:
-				[temp, hum] = dht(dht_sensor_port, 0)
-				print "temp =", temp,
-				if math.isnan(temp):
-					temp = 0
-				return float(temp)
-			except(IOError, TypeError) as e:
-				print "Error"
-
-		def getHumidity():
-			try: 
-				[temp, hum] = dht(dht_sensor_port, 0)
-				print "humidity =", hum, "%"
-				if math.isnan(hum):
-					hum =0
-				return hum
-			except (IOError, TypeError) as e:
-				print "Error"
-
-		#For camera
-		def getCamera():
-			try:
-				button_status = digitalRead(button)
-				if button_status:
-					#take a picture
-				else:
-					#Nothing
-					print("Camera is not active")
-					return 0
-			except (IOError, TypeError) as e:
-				print ("Error")
-
-		#For Blue led
-		def getBlueLed():
-			try:
-				button_app_status1 = #the app
-				if button_app_status1:
-					digitalWrite(led, 1)
-					print ("Blue LED On")
-					return 1
-				else:
-					digitalWrite(led, 0)
-					print("Blue LED Off")
-					return 0
-			except (IOError, TypeError) as e:
-				print ("Error")
-
-		#For Green led
-		def getGreenLed():
-			try:
-				button_app_status2 = #the app
-				if button_app_status2:
-					digitalWrite(led, 1)
-					print ("Green LED On")
-					return 1
-				else:
-					digitalWrite(led, 0)
-					print("Green LED Off")
-					return 0
-			except (IOError, TypeError) as e:
-				print ("Error")
-
-		#For Red led
-		def getRedLed():
-			try:
-				button_app_status3 = #the app
-				if button_app_status3:
-					digitalWrite(led, 1)
-					print ("Red LED On")
-					return 1
-				else:
-					digitalWrite(led, 0)
-					print("Red LED Off")
-					return 0
-			except (IOError, TypeError) as e:
-				print ("Error")
-
-	def post(dic):
-    thing = 'Caoimhe Malone IOT Dev'
-    print dweepy.dweet_for(thing, dic)
-
-	def getReadings():
-	    dict = {}
-	    dict ["led1"] = getBlueLED()
-	    dict ["led2"] = getGreenLED()
-	    dict ["led3"] = getRedLED()
-	    dict ["temperature"] = getTemp()
-	    dict ["humidity"] = getHumidity()
-	    dict ["camera"] = getCamera()
-	    return dict
-
-	while True:
-	    dict = getReadings();
-	    post(dict)
-	    time.sleep(5)
+    while publisher_state:
+        result = dweepy.dweet_for('raspberryPI', {"temperature": 12, "attention_level": 84.5})
+        print result
+        time.sleep(5)
+    print "publishing ending"
+           
 
 
-	print "publishing ending"
+            #Sensor Code 
 
-	#dweepy code goes here post
+#For camera
+def Camera_Method():
+    while cam_state:
+        try:
+                #take a picture
+                digitalWrite(buzzer, 1)
+                time.sleep(0.05)
+                digitalWrite(buzzer,0)
+                camera.capture(output)
+                print("Photo Taken")
+               
+                camera.start_preview()
+                camera.vflip = True
+                camera.hflip = True
+                camera.brightness = 60
+                result = dweepy.dweet_for('raspberryPI', {"camera": cam})
+                print result
+                time.sleep(5)
+
+        except (IOError, TypeError) as e:
+            print "Error"
+    print "Cam ending"
+
+#For Blue LED
+def Blue_Method():
+    while led1_state:
+        try:
+            digitalWrite(led1sensor, 1)
+            digitalWrite(buzzer, 1)
+            time.sleep(0.05)
+            digitalWrite(buzzer, 0)
+            print ("Blue LED On")
+            result = dweepy.dweet_for('raspberryPI', {"led1", 1})
+            print result
+            time.sleep(5)
+
+            digitalWrite(led1sensor, 0)
+            print ("Blue LED Off")
+            result = dweepy.dweet_for('raspberryPI', {"led1", 0})
+            print result
+            time.sleep(5)
+
+        except KeyboardInterrupt:
+                digitalWrite(led1sensor,0)
+                break
+
+        except (IOError, TypeError) as e:
+                print "Error"
+        print "Blue LED ending"
+
+#For Green LED
+def Green_Method():
+    while led2_state:
+        try:
+            digitalWrite(led2sensor, 1)
+            digitalWrite(buzzer, 1)
+            time.sleep(0.05)
+            digitalWrite(buzzer, 0)
+            print ("Green LED On")
+            result = dweepy.dweet_for('raspberryPI', {"led2", 1})
+            print result
+            time.sleep(5)
+
+            digitalWrite(led2sensor, 0)
+            print ("Green LED Off")
+            result = dweepy.dweet_for('raspberryPI', {"led2", 0})
+            print result
+            time.sleep(5)
+
+        except KeyboardInterrupt:
+                digitalWrite(led2sensor,0)
+                break
+
+        except (IOError, TypeError) as e:
+                print "Error"
+        print "Green LED ending"
+
+#For Red LED
+def Red_Method():
+    while led3_state:
+        try:
+            digitalWrite(led3sensor, 1)
+            digitalWrite(buzzer, 1)
+            time.sleep(0.05)
+            digitalWrite(buzzer, 0)
+            print ("Red LED On")
+            result = dweepy.dweet_for('raspberryPI', {"led3", 1})
+            print result
+            time.sleep(5)
+
+            digitalWrite(led3sensor, 0)
+            print ("Red LED Off")
+            result = dweepy.dweet_for('raspberryPI', {"led3", 0})
+            print result
+            time.sleep(5)
+
+        except KeyboardInterrupt:
+                digitalWrite(led3sensor,0)
+                break
+
+        except (IOError, TypeError) as e:
+                print "Error"
+        print "Blue LED ending"
+
 
 publisher_thread = Thread(target=publisher_method_caoimhe)
-listener_thread = Thread(target=listener, args=(publisher_thread,))
+led1_thread = Thread(target=Blue_Method)
+led2_thread = Thread(target=Green_Method)
+led3_thred = Thread(target=Red_Method)
+cam_thread = Thread(target=Camera_Method)
+
+listener_thread = Thread(target=listener, args=(publisher_thread,led1_thread, led2_thread, led3_thred, cam_thread,))
 listener_thread.start()
