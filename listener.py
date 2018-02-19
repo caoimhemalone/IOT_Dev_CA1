@@ -6,24 +6,21 @@ from threading import Thread
 
 output = strftime("/home/pi/Desktop/IOT_Dev_CA1/Pi_Photos/img-%d-%m %H:%M:%S.png", gmtime())
 
-sleep_time = 1
+# sleep_time = 5
 
 led1sensor = 7
 led2sensor = 8
 led3sensor = 5
 #camera = #buzzer is set off when photo is taken along with the green LED
 camera = picamera.PiCamera()
-#dht_sensor_port = 0
 buzzer = 3
-#button = 2 #button takes photo
+
 
 publisher_state = False;
 led1_state = False;
 led2_state = False;
 led3_state = False;
 cam_state = False;
-every_state = False;
-#thingName = "CaoimhesThing"
 thingName = "caoimhe"
 
 
@@ -43,26 +40,26 @@ def listener(publisher, led1, led2, led3, cam):
                         # start the publisher thread
                         led1_state = True
                         if not led1.is_alive():
-                                led1 = Thread(target=publisher_method_caoimhe)
-                        publisher.start()
+                                led1 = Thread(target=Blue_Method)
+                        led1.start()
                 elif should_publish == "led2":
                         # start the publisher thread
                         led2_state = True
                         if not led2.is_alive():
-                                led2 = Thread(target=publisher_method_caoimhe)
-                        publisher.start()
+                                led2 = Thread(target=Green_Method)
+                        led2.start()
                 elif should_publish == "led3":
                         # start the publisher thread
                         led3_state = True
                         if not led3.is_alive():
-                                led3 = Thread(target=publisher_method_caoimhe)
-                        publisher.start()
+                                led3 = Thread(target=Red_Method)
+                        led3.start()
                 elif should_publish == "cam":
                         # start the publisher thread
                         cam_state = True
                         if not cam.is_alive():
-                                cam = Thread(target=publisher_method_caoimhe)
-                        publisher.start()
+                                cam = Thread(target=Camera_Method)
+                        cam.start()
 
                 else:
                         publisher_state = False
@@ -85,21 +82,29 @@ def Camera_Method():
         try:
                 #take a picture
                 digitalWrite(buzzer, 1)
-                time.sleep(0.05)
+                #time.sleep(0.05)
                 digitalWrite(buzzer,0)
+                digitalWrite(led2sensor, 1)
                 camera.capture(output)
                 print("Photo Taken")
-               
                 camera.start_preview()
                 camera.vflip = True
                 camera.hflip = True
                 camera.brightness = 60
+
+                digitalWrite(led2sensor, 0)
+                digitalWrite(buzzer, 0)
                 result = dweepy.dweet_for('raspberryPI', {"camera": cam})
                 print result
                 time.sleep(5)
 
         except (IOError, TypeError) as e:
             print "Error"
+        except KeyboardInterrupt:
+                digitalWrite(led2sensor,0)
+                digitalWrite(buzzer, 0)
+                break
+
     print "Cam ending"
 
 #For Blue LED
@@ -108,7 +113,7 @@ def Blue_Method():
         try:
             digitalWrite(led1sensor, 1)
             digitalWrite(buzzer, 1)
-            time.sleep(0.05)
+            #time.sleep(0.05)
             digitalWrite(buzzer, 0)
             print ("Blue LED On")
             result = dweepy.dweet_for('raspberryPI', {"led1", 1})
@@ -123,6 +128,7 @@ def Blue_Method():
 
         except KeyboardInterrupt:
                 digitalWrite(led1sensor,0)
+                digitalWrite(buzzer, 0)
                 break
 
         except (IOError, TypeError) as e:
@@ -135,7 +141,7 @@ def Green_Method():
         try:
             digitalWrite(led2sensor, 1)
             digitalWrite(buzzer, 1)
-            time.sleep(0.05)
+            #time.sleep(0.05)
             digitalWrite(buzzer, 0)
             print ("Green LED On")
             result = dweepy.dweet_for('raspberryPI', {"led2", 1})
@@ -150,6 +156,7 @@ def Green_Method():
 
         except KeyboardInterrupt:
                 digitalWrite(led2sensor,0)
+                digitalWrite(buzzer, 0)
                 break
 
         except (IOError, TypeError) as e:
@@ -162,7 +169,7 @@ def Red_Method():
         try:
             digitalWrite(led3sensor, 1)
             digitalWrite(buzzer, 1)
-            time.sleep(0.05)
+            #time.sleep(0.05)
             digitalWrite(buzzer, 0)
             print ("Red LED On")
             result = dweepy.dweet_for('raspberryPI', {"led3", 1})
@@ -177,6 +184,7 @@ def Red_Method():
 
         except KeyboardInterrupt:
                 digitalWrite(led3sensor,0)
+                digitalWrite(buzzer, 0)
                 break
 
         except (IOError, TypeError) as e:

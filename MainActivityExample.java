@@ -33,15 +33,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //Button button = (Button) findViewById(R.id.button);
 
         //button.setOnClickListener(this);
-
-        Switch ledswitch1 = (Switch) findViewById(R.id.led1Switch);
-        ledswitch1.setOnClickListener(this);
-        Switch ledswitch2 = (Switch) findViewById(R.id.led2Switch);
-        ledswitch2.setOnClickListener(this);
-        Switch ledswitch3 = (Switch) findViewById(R.id.led3Switch);
-        ledswitch3.setOnClickListener(this);
+//
+//        Switch ledswitch1 = (Switch) findViewById(R.id.led1Switch);
+//        ledswitch1.setOnClickListener(this);
+//        Switch ledswitch2 = (Switch) findViewById(R.id.led2Switch);
+//        ledswitch2.setOnClickListener(this);
+//        Switch ledswitch3 = (Switch) findViewById(R.id.led3Switch);
+//        ledswitch3.setOnClickListener(this);
+        Button led1btn = (Button) findViewById(R.id.led1BTN);
+        led1btn.setOnClickListener(this);
+        Button led2btn = (Button) findViewById(R.id.led2BTN);
+        led2btn.setOnClickListener(this);
+        Button led3btn = (Button) findViewById(R.id.led3BTN);
+        led3btn.setOnClickListener(this);
         Button cambtn = (Button) findViewById(R.id.camBTN);
         cambtn.setOnClickListener(this);
+        Button startbtn = (Button) findViewById(R.id.startBTN);
+        startbtn.setOnClickListener(this);
         
         //view = (TextView) findViewById(R.id.messageTV);
 
@@ -52,7 +60,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View view) {
         switch (view.getId()){
-            case R.id.start:
+            case R.id.startBTN:
                 JSONObject data0 = new JSONObject();
                 try {
                     data0.put("start", "true");
@@ -66,7 +74,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 jsonRequest0.setTag("test");
                 mQueue.add(jsonRequest0);
 
-            case R.id.led1Switch:
+            case R.id.led1BTN:
                 JSONObject data = new JSONObject();
                 try {
                     data.put("start", "true");
@@ -80,7 +88,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             jsonRequest.setTag("test");
             mQueue.add(jsonRequest);
 
-            case R.id.led2Switch:
+            case R.id.led2BTN:
                 JSONObject data2 = new JSONObject();
                 try {
                     data2.put("start", "true");
@@ -94,7 +102,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 jsonRequest2.setTag("test");
                 mQueue.add(jsonRequest2);
 
-            case R.id.led3Switch:
+            case R.id.led3BTN:
                 JSONObject data3 = new JSONObject();
                 try {
                     data3.put("start", "true");
