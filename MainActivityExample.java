@@ -48,10 +48,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         led3btn.setOnClickListener(this);
         Button cambtn = (Button) findViewById(R.id.camBTN);
         cambtn.setOnClickListener(this);
-        Button startbtn = (Button) findViewById(R.id.startBTN);
-        startbtn.setOnClickListener(this);
+//        Button startbtn = (Button) findViewById(R.id.startBTN);
+//        startbtn.setOnClickListener(this);
         
-        //view = (TextView) findViewById(R.id.messageTV);
+        view = (TextView) findViewById(R.id.messageTV);
 
         mQueue = CustomQueue.getInstance(this.getApplicationContext())
                 .getRequestQueue();
@@ -59,76 +59,82 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View view) {
+        String url;
         switch (view.getId()){
-            case R.id.startBTN:
-                JSONObject data0 = new JSONObject();
-                try {
-                    data0.put("start", "true");
-                } catch (JSONException e){
-                    e.printStackTrace();
-                }
-
-                String url0 = "https://dweet.io/dweet/for/caoimhe?publish=true";
-                final CustomJSONRequest jsonRequest0 = new CustomJSONRequest(Request.Method.GET, url0,
-                        new JSONObject(), this, this);
-                jsonRequest0.setTag("test");
-                mQueue.add(jsonRequest0);
+//            case R.id.startBTN:
+////                JSONObject data0 = new JSONObject();
+////                try {
+////                    data0.put("start", "true");
+////                } catch (JSONException e){
+////                    e.printStackTrace();
+////                }
+//
+//                url = "https://dweet.io/dweet/for/caoimhe?publish=true";
+//                final CustomJSONRequest jsonRequest0 = new CustomJSONRequest(Request.Method.GET, url,
+//                        new JSONObject(), this, this);
+//                jsonRequest0.setTag("test");
+//                mQueue.add(jsonRequest0);
+//                break;
 
             case R.id.led1BTN:
-                JSONObject data = new JSONObject();
-                try {
-                    data.put("start", "true");
-                } catch (JSONException e){
-                    e.printStackTrace();
-                }
+//                JSONObject data = new JSONObject();
+//                try {
+//                    data.put("start", "true");
+//                } catch (JSONException e){
+//                    e.printStackTrace();
+//                }
 
-            String url = "https://dweet.io/dweet/for/caoimhe?publish=led1";
-            final CustomJSONRequest jsonRequest = new CustomJSONRequest(Request.Method.GET, url,
-                    new JSONObject(), this, this);
-            jsonRequest.setTag("test");
-            mQueue.add(jsonRequest);
+                url = "https://dweet.io/dweet/for/caoimhe?publish=led1";
+                final CustomJSONRequest jsonRequest = new CustomJSONRequest(Request.Method.GET, url,
+                        new JSONObject(), this, this);
+                jsonRequest.setTag("test");
+                mQueue.add(jsonRequest);
+                break;
 
             case R.id.led2BTN:
-                JSONObject data2 = new JSONObject();
-                try {
-                    data2.put("start", "true");
-                } catch (JSONException e){
-                    e.printStackTrace();
-                }
+//                JSONObject data2 = new JSONObject();
+//                try {
+//                    data2.put("start", "true");
+//                } catch (JSONException e){
+//                    e.printStackTrace();
+//                }
 
-                String url2 = "https://dweet.io/dweet/for/caoimhe?publish=led2";
-                final CustomJSONRequest jsonRequest2 = new CustomJSONRequest(Request.Method.GET, url2,
+                url = "https://dweet.io/dweet/for/caoimhe?publish=led2";
+                final CustomJSONRequest jsonRequest2 = new CustomJSONRequest(Request.Method.GET, url,
                         new JSONObject(), this, this);
                 jsonRequest2.setTag("test");
                 mQueue.add(jsonRequest2);
+                break;
 
             case R.id.led3BTN:
-                JSONObject data3 = new JSONObject();
-                try {
-                    data3.put("start", "true");
-                } catch (JSONException e){
-                    e.printStackTrace();
-                }
+//                JSONObject data3 = new JSONObject();
+//                try {
+//                    data3.put("publish", "led3");
+//                } catch (JSONException e){
+//                    e.printStackTrace();
+//                }
 
-                String url3 = "https://dweet.io/dweet/for/caoimhe?publish=led3";
-                final CustomJSONRequest jsonRequest3 = new CustomJSONRequest(Request.Method.GET, url3,
+                url = "https://dweet.io/dweet/for/caoimhe?publish=led3";
+                final CustomJSONRequest jsonRequest3 = new CustomJSONRequest(Request.Method.GET, url,
                         new JSONObject(), this, this);
                 jsonRequest3.setTag("test");
                 mQueue.add(jsonRequest3);
+                break;
 
             case R.id.camBTN:
-                JSONObject data4 = new JSONObject();
-                try {
-                    data4.put("start", "true");
-                } catch (JSONException e){
-                    e.printStackTrace();
-                }
+//                JSONObject data4 = new JSONObject();
+//                try {
+//                    data4.put("start", "true");
+//                } catch (JSONException e){
+//                    e.printStackTrace();
+//                }
 
-                String url4 = "https://dweet.io/dweet/for/caoimhe?publish=camera";
-                final CustomJSONRequest jsonRequest4 = new CustomJSONRequest(Request.Method.GET, url4,
+                url = "https://dweet.io/dweet/for/caoimhe?publish=cam";
+                final CustomJSONRequest jsonRequest4 = new CustomJSONRequest(Request.Method.GET, url,
                         new JSONObject(), this, this);
                 jsonRequest4.setTag("test");
                 mQueue.add(jsonRequest4);
+                break;
 
         }
     }

@@ -13,10 +13,11 @@ led2sensor = 8
 led3sensor = 5
 #camera = #buzzer is set off when photo is taken along with the green LED
 camera = picamera.PiCamera()
+#dht_sensor_port = 0
 buzzer = 3
+#button = 2 #button takes photo
 
-
-publisher_state = False;
+#publisher_state = False;
 led1_state = False;
 led2_state = False;
 led3_state = False;
@@ -24,19 +25,19 @@ cam_state = False;
 thingName = "caoimhe"
 
 
-def listener(publisher, led1, led2, led3, cam):
+def listener(led1, led2, led3, cam):
         for dweet in dweepy.listen_for_dweets_from('caoimhe'):
                 content = dweet["content"]
                 should_publish = content.get("publish", "")
                 print should_publish
-                global publisher_state, led1_state, led2_state, led3_state, cam_state, every_state
-                if should_publish == "true":
-                        # start the publisher thread
-                            publisher_state = True
-                            if not publisher.is_alive():
-                                publisher = Thread(target=publisher_method_caoimhe)
-                                publisher.start()
-                elif should_publish == "led1":
+                global  led1_state, led2_state, led3_state, cam_state, every_state
+                # if should_publish == "true":
+                #         # start the publisher thread
+                #             publisher_state = True
+                #             if not publisher.is_alive():
+                #                 publisher = Thread(target=publisher_method_caoimhe)
+                #                 publisher.start()
+                if should_publish == "led1":
                         # start the publisher thread
                         led1_state = True
                         if not led1.is_alive():
@@ -62,15 +63,20 @@ def listener(publisher, led1, led2, led3, cam):
                         cam.start()
 
                 else:
-                        publisher_state = False
+                        #publisher_state = False
+                        led1_state = False;
+                        led2_state = False;
+                        led3_state = False;
+                        cam_state = False;
+
                         print "Wasn't true"
 
-def publisher_method_caoimhe():
-    while publisher_state:
-        result = dweepy.dweet_for('raspberryPI', {"temperature": 12, "attention_level": 84.5})
-        print result
-        time.sleep(5)
-    print "publishing ending"
+# def publisher_method_caoimhe():
+#     while publisher_state:
+#         result = dweepy.dweet_for('raspberryPI', )
+#         print result
+#         time.sleep(5)
+#     print "publishing ending"
            
 
 
@@ -82,7 +88,7 @@ def Camera_Method():
         try:
                 #take a picture
                 digitalWrite(buzzer, 1)
-                #time.sleep(0.05)
+                time.sleep(0.05)
                 digitalWrite(buzzer,0)
                 digitalWrite(led2sensor, 1)
                 camera.capture(output)
@@ -94,7 +100,7 @@ def Camera_Method():
 
                 digitalWrite(led2sensor, 0)
                 digitalWrite(buzzer, 0)
-                result = dweepy.dweet_for('raspberryPI', {"camera": cam})
+                result = dweepy.dweet_for('raspberryPI', {"camera": 1})
                 print result
                 time.sleep(5)
 
@@ -111,18 +117,19 @@ def Camera_Method():
 def Blue_Method():
     while led1_state:
         try:
-            digitalWrite(led1sensor, 1)
             digitalWrite(buzzer, 1)
-            #time.sleep(0.05)
-            digitalWrite(buzzer, 0)
+            time.sleep(5)
+            #digitalWrite(buzzer, 0)
+            digitalWrite(led1sensor, 1)
             print ("Blue LED On")
-            result = dweepy.dweet_for('raspberryPI', {"led1", 1})
+            result = dweepy.dweet_for('raspberryPI', {"led1": 1})
             print result
             time.sleep(5)
 
             digitalWrite(led1sensor, 0)
+            digitalWrite(buzzer, 0)
             print ("Blue LED Off")
-            result = dweepy.dweet_for('raspberryPI', {"led1", 0})
+            result = dweepy.dweet_for('raspberryPI', {"led1": 0})
             print result
             time.sleep(5)
 
@@ -132,7 +139,7 @@ def Blue_Method():
                 break
 
         except (IOError, TypeError) as e:
-                print "Error"
+                print e
         print "Blue LED ending"
 
 #For Green LED
@@ -141,16 +148,16 @@ def Green_Method():
         try:
             digitalWrite(led2sensor, 1)
             digitalWrite(buzzer, 1)
-            #time.sleep(0.05)
+            time.sleep(5)
             digitalWrite(buzzer, 0)
             print ("Green LED On")
-            result = dweepy.dweet_for('raspberryPI', {"led2", 1})
+            result = dweepy.dweet_for('raspberryPI', {"led2": 1})
             print result
             time.sleep(5)
 
             digitalWrite(led2sensor, 0)
             print ("Green LED Off")
-            result = dweepy.dweet_for('raspberryPI', {"led2", 0})
+            result = dweepy.dweet_for('raspberryPI', {"led2": 0})
             print result
             time.sleep(5)
 
@@ -169,16 +176,16 @@ def Red_Method():
         try:
             digitalWrite(led3sensor, 1)
             digitalWrite(buzzer, 1)
-            #time.sleep(0.05)
+            time.sleep(5)
             digitalWrite(buzzer, 0)
             print ("Red LED On")
-            result = dweepy.dweet_for('raspberryPI', {"led3", 1})
+            result = dweepy.dweet_for('raspberryPI', {"led3": 1})
             print result
             time.sleep(5)
 
             digitalWrite(led3sensor, 0)
             print ("Red LED Off")
-            result = dweepy.dweet_for('raspberryPI', {"led3", 0})
+            result = dweepy.dweet_for('raspberryPI', {"led3": 0})
             print result
             time.sleep(5)
 
@@ -192,11 +199,11 @@ def Red_Method():
         print "Blue LED ending"
 
 
-publisher_thread = Thread(target=publisher_method_caoimhe)
+#publisher_thread = Thread(target=publisher_method_caoimhe)
 led1_thread = Thread(target=Blue_Method)
 led2_thread = Thread(target=Green_Method)
 led3_thred = Thread(target=Red_Method)
 cam_thread = Thread(target=Camera_Method)
 
-listener_thread = Thread(target=listener, args=(publisher_thread,led1_thread, led2_thread, led3_thred, cam_thread,))
+listener_thread = Thread(target=listener, args=(led1_thread, led2_thread, led3_thred, cam_thread,))
 listener_thread.start()
