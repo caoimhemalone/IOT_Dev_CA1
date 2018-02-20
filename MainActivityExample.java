@@ -4,7 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Switch;
+import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,23 +23,21 @@ import org.json.JSONObject;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, Response.Listener, Response.ErrorListener {
 
     private RequestQueue mQueue;
-    private TextView view;
+    private TextView view, timeSeek;
+
+    int time;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //Button button = (Button) findViewById(R.id.button);
+        timeSeek = (TextView) findViewById(R.id.time);
+        SeekBar seekbar = (SeekBar) findViewById(R.id.seekBar2);
 
-        //button.setOnClickListener(this);
-//
-//        Switch ledswitch1 = (Switch) findViewById(R.id.led1Switch);
-//        ledswitch1.setOnClickListener(this);
-//        Switch ledswitch2 = (Switch) findViewById(R.id.led2Switch);
-//        ledswitch2.setOnClickListener(this);
-//        Switch ledswitch3 = (Switch) findViewById(R.id.led3Switch);
-//        ledswitch3.setOnClickListener(this);
+        time = seekbar.getProgress();
+        timeSeek.setText(String.valueOf(time));
+
         Button led1btn = (Button) findViewById(R.id.led1BTN);
         led1btn.setOnClickListener(this);
         Button led2btn = (Button) findViewById(R.id.led2BTN);
@@ -48,43 +46,38 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         led3btn.setOnClickListener(this);
         Button cambtn = (Button) findViewById(R.id.camBTN);
         cambtn.setOnClickListener(this);
-//        Button startbtn = (Button) findViewById(R.id.startBTN);
-//        startbtn.setOnClickListener(this);
         
         view = (TextView) findViewById(R.id.messageTV);
 
         mQueue = CustomQueue.getInstance(this.getApplicationContext())
                 .getRequestQueue();
+
+        seekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+                time = seekBar.getProgress();
+                timeSeek.setText(String.valueOf(time));
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
     }
 
     @Override
     public void onClick(View view) {
         String url;
         switch (view.getId()){
-//            case R.id.startBTN:
-////                JSONObject data0 = new JSONObject();
-////                try {
-////                    data0.put("start", "true");
-////                } catch (JSONException e){
-////                    e.printStackTrace();
-////                }
-//
-//                url = "https://dweet.io/dweet/for/caoimhe?publish=true";
-//                final CustomJSONRequest jsonRequest0 = new CustomJSONRequest(Request.Method.GET, url,
-//                        new JSONObject(), this, this);
-//                jsonRequest0.setTag("test");
-//                mQueue.add(jsonRequest0);
-//                break;
-
             case R.id.led1BTN:
-//                JSONObject data = new JSONObject();
-//                try {
-//                    data.put("start", "true");
-//                } catch (JSONException e){
-//                    e.printStackTrace();
-//                }
 
-                url = "https://dweet.io/dweet/for/caoimhe?publish=led1";
+                url = "https://dweet.io/dweet/for/caoimhe?publish=led1&time="+time;
                 final CustomJSONRequest jsonRequest = new CustomJSONRequest(Request.Method.GET, url,
                         new JSONObject(), this, this);
                 jsonRequest.setTag("test");
@@ -92,14 +85,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case R.id.led2BTN:
-//                JSONObject data2 = new JSONObject();
-//                try {
-//                    data2.put("start", "true");
-//                } catch (JSONException e){
-//                    e.printStackTrace();
-//                }
 
-                url = "https://dweet.io/dweet/for/caoimhe?publish=led2";
+                url = "https://dweet.io/dweet/for/caoimhe?publish=led2&time="+time;
                 final CustomJSONRequest jsonRequest2 = new CustomJSONRequest(Request.Method.GET, url,
                         new JSONObject(), this, this);
                 jsonRequest2.setTag("test");
@@ -107,14 +94,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case R.id.led3BTN:
-//                JSONObject data3 = new JSONObject();
-//                try {
-//                    data3.put("publish", "led3");
-//                } catch (JSONException e){
-//                    e.printStackTrace();
-//                }
 
-                url = "https://dweet.io/dweet/for/caoimhe?publish=led3";
+                url = "https://dweet.io/dweet/for/caoimhe?publish=led3&time="+time;
                 final CustomJSONRequest jsonRequest3 = new CustomJSONRequest(Request.Method.GET, url,
                         new JSONObject(), this, this);
                 jsonRequest3.setTag("test");
@@ -122,14 +103,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case R.id.camBTN:
-//                JSONObject data4 = new JSONObject();
-//                try {
-//                    data4.put("start", "true");
-//                } catch (JSONException e){
-//                    e.printStackTrace();
-//                }
 
-                url = "https://dweet.io/dweet/for/caoimhe?publish=cam";
+                url = "https://dweet.io/dweet/for/caoimhe?publish=cam&time="+time;
                 final CustomJSONRequest jsonRequest4 = new CustomJSONRequest(Request.Method.GET, url,
                         new JSONObject(), this, this);
                 jsonRequest4.setTag("test");
