@@ -32,12 +32,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        timeSeek = (TextView) findViewById(R.id.time);
-        SeekBar seekbar = (SeekBar) findViewById(R.id.seekBar2);
-
-        time = seekbar.getProgress();
-        timeSeek.setText(String.valueOf(time));
-
         Button led1btn = (Button) findViewById(R.id.led1BTN);
         led1btn.setOnClickListener(this);
         Button led2btn = (Button) findViewById(R.id.led2BTN);
@@ -46,11 +40,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         led3btn.setOnClickListener(this);
         Button cambtn = (Button) findViewById(R.id.camBTN);
         cambtn.setOnClickListener(this);
+        TextView tempTV = (TextView) findViewById(R.id.temp);
+
+        TextView humTV = (TextView) findViewById(R.id.hum);
+
         
         view = (TextView) findViewById(R.id.messageTV);
 
         mQueue = CustomQueue.getInstance(this.getApplicationContext())
                 .getRequestQueue();
+
+        timeSeek = (TextView) findViewById(R.id.time);
+        SeekBar seekbar = (SeekBar) findViewById(R.id.seekBar);
+
+        time = seekbar.getProgress();
+        timeSeek.setText(String.valueOf(time));
 
         seekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -111,6 +115,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 mQueue.add(jsonRequest4);
                 break;
 
+            case R.id.temp:
+
+                url = "https://dweet.io/dweet/for/caoimhe?publish=temp";
+                final CustomJSONRequest jsonRequest5 = new CustomJSONRequest(Request.Method.GET, url,
+                        new JSONObject(), this, this);
+                jsonRequest5.setTag("test");
+                mQueue.add(jsonRequest5);
+                break;
+
+            case R.id.hum:
+
+                url = "https://dweet.io/dweet/for/caoimhe?publish=hum";
+                final CustomJSONRequest jsonRequest6 = new CustomJSONRequest(Request.Method.GET, url,
+                        new JSONObject(), this, this);
+                jsonRequest6.setTag("test");
+                mQueue.add(jsonRequest6);
+                break;
         }
     }
 
