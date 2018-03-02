@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimary">#f4a742</color>
+    <color name="colorPrimaryDark">#f49d41</color>
+    <color name="lightblue">#1AB8ED</color>
+    <color name="lightgreen">#1aed95</color>
+    <string name="app_name">IOT CA 1</string>
+    <string name="cam">Camera</string>
+    <string name="hum"> Humidity:</string>
+    <string name="led1"> Blue Light</string>
+    <string name="led2"> Green Light</string>
+    <string name="led3"> Red Light</string>
+    <string name="start">Start</string>
+    <string name="temp">Temperature</string>
+    <string name="title">Use buttons to turn sensors on and off</string>
+</resources>

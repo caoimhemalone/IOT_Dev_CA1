@@ -1,0 +1,34 @@
+[
+    {
+        "merged": "/Users/caoimhemalone/IOT_Dev_CA1/IOT_Dev_CA1/AndroidPubSub/build/intermediates/res/merged/debug/raw_awsconfiguration.json.flat",
+        "source": "/Users/caoimhemalone/IOT_Dev_CA1/IOT_Dev_CA1/AndroidPubSub/res/raw/awsconfiguration.json"
+    },
+    {
+        "merged": "/Users/caoimhemalone/Desktop/AndroidPubSub/build/intermediates/res/merged/debug/layout_activity_main.xml.flat",
+        "source": "/Users/caoimhemalone/Desktop/AndroidPubSub/res/layout/activity_main.xml"
+    },
+    {
+        "merged": "/Users/caoimhemalone/IOT_Dev_CA1/IOT_Dev_CA1/AndroidPubSub/build/intermediates/res/merged/debug/drawable_ic_launcher.png.flat",
+        "source": "/Users/caoimhemalone/IOT_Dev_CA1/IOT_Dev_CA1/AndroidPubSub/res/drawable/ic_launcher.png"
+    },
+    {
+        "merged": "/Users/caoimhemalone/IOT_Dev_CA1/IOT_Dev_CA1/caoimhesiotdev1/build/intermediates/res/merged/debug/raw_awsconfiguration.json.flat",
+        "source": "/Users/caoimhemalone/IOT_Dev_CA1/IOT_Dev_CA1/caoimhesiotdev1/res/raw/awsconfiguration.json"
+    },
+    {
+        "merged": "/Users/caoimhemalone/IOT_Dev_CA1/IOT_Dev_CA1/AndroidPubSub/build/intermediates/res/merged/debug/layout_activity_main.xml.flat",
+        "source": "/Users/caoimhemalone/IOT_Dev_CA1/IOT_Dev_CA1/AndroidPubSub/res/layout/activity_main.xml"
+    },
+    {
+        "merged": "/Users/caoimhemalone/IOT_Dev_CA1/IOT_Dev_CA1/caoimhesiotdev1/build/intermediates/res/merged/debug/layout_activity_main.xml.flat",
+        "source": "/Users/caoimhemalone/IOT_Dev_CA1/IOT_Dev_CA1/caoimhesiotdev1/res/layout/activity_main.xml"
+    },
+    {
+        "merged": "/Users/caoimhemalone/Desktop/AndroidPubSub/build/intermediates/res/merged/debug/drawable_ic_launcher.png.flat",
+        "source": "/Users/caoimhemalone/Desktop/AndroidPubSub/res/drawable/ic_launcher.png"
+    },
+    {
+        "merged": "/Users/caoimhemalone/IOT_Dev_CA1/IOT_Dev_CA1/caoimhesiotdev1/build/intermediates/res/merged/debug/drawable_ic_launcher.png.flat",
+        "source": "/Users/caoimhemalone/IOT_Dev_CA1/IOT_Dev_CA1/caoimhesiotdev1/res/drawable/ic_launcher.png"
+    }
+]

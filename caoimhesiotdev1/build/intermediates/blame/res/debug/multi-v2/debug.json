@@ -1,0 +1,119 @@
+{
+    "logs": [
+        {
+            "outputFile": "/Users/caoimhemalone/Desktop/AndroidPubSub/build/intermediates/res/merged/debug/values_values.arsc.flat",
+            "map": [
+                {
+                    "source": "/Users/caoimhemalone/Desktop/AndroidPubSub/res/values/strings.xml",
+                    "from": {
+                        "startLines": "1,7,6,2,3,4,9,5,8",
+                        "startColumns": "4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "16,285,242,62,107,153,405,197,324",
+                        "endColumns": "45,38,42,44,45,43,39,44,80",
+                        "endOffsets": "57,319,280,102,148,192,440,237,400"
+                    },
+                    "to": {
+                        "startLines": "7,8,9,10,11,12,13,14,15",
+                        "startColumns": "4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "288,334,373,416,461,507,551,591,636",
+                        "endColumns": "45,38,42,44,45,43,39,44,80",
+                        "endOffsets": "329,368,411,456,502,546,586,631,712"
+                    }
+                },
+                {
+                    "source": "/Users/caoimhemalone/Desktop/AndroidPubSub/res/values/colors.xml",
+                    "from": {
+                        "startLines": "4,2,3,5,6",
+                        "startColumns": "4,4,4,4,4",
+                        "startOffsets": "153,55,102,199,243",
+                        "endColumns": "45,46,50,43,44",
+                        "endOffsets": "194,97,148,238,283"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6",
+                        "startColumns": "4,4,4,4,4",
+                        "startOffsets": "55,101,148,199,243",
+                        "endColumns": "45,46,50,43,44",
+                        "endOffsets": "96,143,194,238,283"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "/Users/caoimhemalone/IOT_Dev_CA1/IOT_Dev_CA1/AndroidPubSub/build/intermediates/res/merged/debug/values_values.arsc.flat",
+            "map": [
+                {
+                    "source": "/Users/caoimhemalone/IOT_Dev_CA1/IOT_Dev_CA1/AndroidPubSub/res/values/colors.xml",
+                    "from": {
+                        "startLines": "-1,-1,-1,-1,-1",
+                        "startColumns": "-1,-1,-1,-1,-1",
+                        "startOffsets": "-1,-1,-1,-1,-1"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6",
+                        "startColumns": "4,4,4,4,4",
+                        "startOffsets": "55,101,148,199,243",
+                        "endColumns": "45,46,50,43,44",
+                        "endOffsets": "96,143,194,238,283"
+                    }
+                },
+                {
+                    "source": "/Users/caoimhemalone/IOT_Dev_CA1/IOT_Dev_CA1/AndroidPubSub/res/values/strings.xml",
+                    "from": {
+                        "startLines": "-1,-1,-1,-1,-1,-1,-1,-1,8",
+                        "startColumns": "-1,-1,-1,-1,-1,-1,-1,-1,4",
+                        "startOffsets": "-1,-1,-1,-1,-1,-1,-1,-1,324",
+                        "endColumns": "-1,-1,-1,-1,-1,-1,-1,-1,72",
+                        "endOffsets": "-1,-1,-1,-1,-1,-1,-1,-1,392"
+                    },
+                    "to": {
+                        "startLines": "7,8,9,10,11,12,13,14,15",
+                        "startColumns": "4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "288,334,373,416,461,507,551,591,636",
+                        "endColumns": "45,38,42,44,45,43,39,44,72",
+                        "endOffsets": "329,368,411,456,502,546,586,631,704"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "/Users/caoimhemalone/IOT_Dev_CA1/IOT_Dev_CA1/caoimhesiotdev1/build/intermediates/res/merged/debug/values_values.arsc.flat",
+            "map": [
+                {
+                    "source": "/Users/caoimhemalone/IOT_Dev_CA1/IOT_Dev_CA1/caoimhesiotdev1/res/values/colors.xml",
+                    "from": {
+                        "startLines": "4,2,3,5,6",
+                        "startColumns": "4,4,4,4,4",
+                        "startOffsets": "153,55,102,199,243",
+                        "endColumns": "45,46,50,43,44",
+                        "endOffsets": "194,97,148,238,283"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6",
+                        "startColumns": "4,4,4,4,4",
+                        "startOffsets": "55,101,148,199,243",
+                        "endColumns": "45,46,50,43,44",
+                        "endOffsets": "96,143,194,238,283"
+                    }
+                },
+                {
+                    "source": "/Users/caoimhemalone/IOT_Dev_CA1/IOT_Dev_CA1/caoimhesiotdev1/res/values/strings.xml",
+                    "from": {
+                        "startLines": "1,7,6,2,3,4,9,5,8",
+                        "startColumns": "4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "16,285,242,62,107,153,397,197,324",
+                        "endColumns": "45,38,42,44,45,43,39,44,72",
+                        "endOffsets": "57,319,280,102,148,192,432,237,392"
+                    },
+                    "to": {
+                        "startLines": "7,8,9,10,11,12,13,14,15",
+                        "startColumns": "4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "288,334,373,416,461,507,551,591,636",
+                        "endColumns": "45,38,42,44,45,43,39,44,72",
+                        "endOffsets": "329,368,411,456,502,546,586,631,704"
+                    }
+                }
+            ]
+        }
+    ]
+}

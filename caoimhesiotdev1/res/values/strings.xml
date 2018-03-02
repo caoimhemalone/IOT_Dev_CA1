@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">IOT CA 1</string>
+    <string name="led1"> Blue Light</string>
+    <string name="led2"> Green Light</string>
+    <string name="led3"> Red Light</string>
+    <string name="temp">Temperature</string>
+    <string name="hum"> Humidity:</string>
+    <string name="cam">Camera</string>
+    <string name="title">Use buttons to turn sensors on and off</string>
+    <string name="start">Start</string>
+</resources>
